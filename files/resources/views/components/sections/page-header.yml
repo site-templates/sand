@@ -1,0 +1,14 @@
+fields:
+    heading:
+        type: text
+        label: Heading
+        default: Writing
+    intro:
+        type: textarea
+        label: Introduction
+        rows: 3
+        default: Notes on interface craft, design systems, and the parts of the work that resist being turned into a process.
+    showIntro:
+        type: toggle
+        label: Show the introduction
+        default: "1"

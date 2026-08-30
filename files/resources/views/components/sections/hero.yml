@@ -1,0 +1,39 @@
+fields:
+    avatar:
+        type: image
+        label: Avatar
+        default: /images/avatar.jpg
+    avatarAlt:
+        type: text
+        label: Avatar alt text
+        default: Theo Brandt
+    showAvatar:
+        type: toggle
+        label: Show the avatar
+        default: "1"
+    heading:
+        type: text
+        label: Name
+        default: Theo Brandt
+    intro:
+        type: textarea
+        label: First paragraph
+        rows: 4
+        default: I am a design engineer in Copenhagen. I build interfaces for a living, mostly the parts nobody demos — the empty state, the error copy, the hundred milliseconds before a click.
+    secondary:
+        type: textarea
+        label: Second paragraph
+        rows: 4
+        default: Right now that means the editor at Vellum. Before that, design systems for hospital wards. In between, a lot of writing about the parts of the work that resist being turned into a process.
+    showStatus:
+        type: toggle
+        label: Show the status pill
+        default: "1"
+    statusUrl:
+        type: url
+        label: Status link
+        default: /now
+    statusLabel:
+        type: text
+        label: Status label
+        default: What I am doing now

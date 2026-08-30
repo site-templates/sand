@@ -1,0 +1,19 @@
+fields:
+    note:
+        type: textarea
+        label: Footer note
+        rows: 2
+        default: This site is 41 kilobytes and has never seen a cookie banner.
+    colophon:
+        type: text
+        label: Colophon line
+        default: Set in Schibsted Grotesk and Inter.
+    links:
+        type: repeater
+        label: Elsewhere links
+        source: site.social
+        item_label: label
+        add_button_label: Add link
+        sub_fields:
+            label: text
+            url: url

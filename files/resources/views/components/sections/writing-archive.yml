@@ -1,0 +1,20 @@
+fields:
+    showYears:
+        type: toggle
+        label: Show the date column
+        default: "1"
+    items:
+        type: repeater
+        label: Posts
+        source: writing
+        item_label: title
+        add_button_label: Add post
+        sub_fields:
+            title: text
+            slug: text
+            link: url
+            description: textarea
+            dateFormatted: text
+            year: text
+            readTime: text
+            content: richtext

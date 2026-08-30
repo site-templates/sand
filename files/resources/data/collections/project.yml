@@ -1,0 +1,10 @@
+fields:
+    title: text
+    slug: text
+    link: url
+    kind: text
+    year: text
+    description: textarea
+    image: image
+    imageAlt: text
+    content: richtext

@@ -1,0 +1,57 @@
+[
+    {
+        "title": "Ledger",
+        "slug": "ledger",
+        "link": "/project/ledger",
+        "kind": "Open source",
+        "year": "2026",
+        "description": "A double-entry accounting library with no opinions about your database.",
+        "image": "/images/projects/ledger.jpg",
+        "imageAlt": "Printed ledger sheets and a brass ruler on paper",
+        "content": "<p>Ledger is a small library for double-entry bookkeeping. It does one thing: it holds a set of accounts and refuses to let them fall out of balance. It has no schema, no migrations, and no idea what a customer is.</p><p>I wrote it after the third time I watched a team reinvent accounting inside an invoicing feature, badly, with a single <code>balance</code> column that four different code paths were allowed to write to.</p><h2>The design</h2><p>Everything is an entry, entries come in transactions, and a transaction that does not sum to zero is rejected before it is stored. That single invariant removes an entire category of bug — the one where a refund succeeds, a ledger write fails, and nobody notices for six weeks.</p><ul><li>No persistence layer — you hand it a repository interface and it does not care what is behind it</li><li>Balances are derived, never stored, with an optional checkpoint if you have millions of rows</li><li>Currency is a value object, and mixing two of them is a type error rather than a rounding error</li></ul><h2>What I learned</h2><p>The hard part was not the arithmetic. It was resisting every request to add a feature that would have made the library know about invoices. Each one was reasonable in isolation, and each one would have made it useless for the next person.</p><p>It is used in production by four companies I know of and an unknown number I do not, which is exactly the right amount of contact to have with a library you maintain in the evenings.</p>"
+    },
+    {
+        "title": "Halftone",
+        "slug": "halftone",
+        "link": "/project/halftone",
+        "kind": "Experiment",
+        "year": "2025",
+        "description": "A shader playground for turning photographs into printed matter in the browser.",
+        "image": "/images/projects/halftone.jpg",
+        "imageAlt": "Macro study of an overlapping halftone dot pattern",
+        "content": "<p>Halftone started as a question: how close can a browser get to the look of a photograph printed on newsprint, in real time, without a single image round-trip?</p><p>Closer than I expected. The answer is a fragment shader, a rotated dot grid per channel, and a great deal of fiddling with the angle between the screens to avoid moiré.</p><h2>The interesting part</h2><p>Print halftones rotate each ink's dot grid to a different angle — traditionally fifteen, seventy-five, zero, and forty-five degrees — precisely so that the patterns do not interfere. Reproduce those angles and the result reads as printed. Get them wrong by three degrees and you get a rosette pattern crawling across the image, which is either a bug or the entire point, depending on the afternoon.</p><blockquote>Every reproduction technology has a signature. The signature is what makes it feel like a thing rather than a picture of a thing.</blockquote><h2>Where it went</h2><p>It became a tool I use constantly for making textures, and a demo I use to explain to designers why the GPU is not scary. The whole thing is about two hundred lines, most of which are the controls.</p>"
+    },
+    {
+        "title": "Casefile",
+        "slug": "casefile",
+        "link": "/project/casefile",
+        "kind": "Product",
+        "year": "2025",
+        "description": "Research notes for interview-heavy teams, built around the transcript rather than the tag.",
+        "image": "/images/projects/casefile.jpg",
+        "imageAlt": "Index cards and interview transcripts fanned out on paper",
+        "content": "<p>Casefile is a tool for teams who run a lot of user interviews and lose most of what they learn. I built the first version in six weeks with two researchers sitting next to me, which is the only reason it is any good.</p><h2>The wrong model</h2><p>Every research tool I looked at was built around tags. You transcribe an interview, you highlight passages, you tag them, and later you filter by tag. It is a sound model that fails for one reason: tagging is work you do now for a benefit you get later, and under deadline pressure nobody does it.</p><p>So Casefile inverts it. The transcript is the primary object, search is full-text and instant, and tags are something you apply while reading the results rather than before. The work happens at the moment you have a question, which is the moment you are actually motivated.</p><h2>What made it click</h2><ul><li>Quotes carry their surrounding thirty seconds, so a pasted quote can never lose its context</li><li>Every quote knows which participant said it and links back to the moment in the recording</li><li>A synthesis is a document that references quotes live — edit the quote, the synthesis updates</li></ul><p>That last one was the feature researchers described as the reason they stopped using a spreadsheet.</p>"
+    },
+    {
+        "title": "Northlight",
+        "slug": "northlight",
+        "link": "/project/northlight",
+        "kind": "Design system",
+        "year": "2024",
+        "description": "A design system for a clinical product, where getting a colour wrong is a safety issue.",
+        "image": "/images/projects/northlight.jpg",
+        "imageAlt": "A printed design-system specimen sheet with swatches and rules",
+        "content": "<p>Northlight is the design system behind a clinical documentation product used in hospital wards. The constraints were unlike anything I had worked with, and they made almost every decision for me.</p><h2>The constraints</h2><ul><li>Ward lighting is bright, cold, and unflattering, and the screens are old and often at an angle</li><li>Users are standing, interrupted, and frequently wearing gloves</li><li>Red and amber carry clinical meaning and cannot be spent on anything else</li></ul><p>That third constraint was the one that shaped the palette. In most products, a warning colour is a design choice. Here it is a signal with a defined meaning, and using amber for a marketing banner would have been a genuine hazard. So the system has two colour vocabularies — a neutral one for interface, and a clinical one that only the clinical components can reach.</p><h2>Bigger than it looks</h2><p>Every target is at least fifty-six pixels, every body size starts at seventeen, and every contrast ratio clears AAA rather than AA. The system looks slightly oversized on a designer's laptop. On a wall-mounted screen at two metres, under a fluorescent tube, it looks correct.</p><p>That gap is the lesson I took away. A design system is calibrated to a room, and if you have not been in the room you are calibrating to your own desk.</p>"
+    },
+    {
+        "title": "Tiny Atlas",
+        "slug": "tiny-atlas",
+        "link": "/project/tiny-atlas",
+        "kind": "Side project",
+        "year": "2024",
+        "description": "A map-making tool for walking routes, with a printer as the only export format.",
+        "image": "/images/projects/tiny-atlas.jpg",
+        "imageAlt": "A hand-drawn walking route inked on a folded topographic sheet",
+        "content": "<p>Tiny Atlas makes one thing: a folded paper map of a walk, sized to a single sheet, with an elevation strip along the bottom and nothing else on it.</p><p>It has no account system, no sharing, and no app. You draw a route, you press print, and you fold the result into your pocket. The whole project is an argument that some outputs should leave the screen.</p><h2>Why paper</h2><p>A phone on a hillside is a battery you are rationing and a screen you cannot read. A paper map is legible in rain, survives being sat on, and does not interrupt the walk to show you a notification. It is also, and this matters more than it should, nice to look at afterwards.</p><h2>The typography problem</h2><p>Most of the work went into labels. A map label has to be readable at eight point, in the rain, printed on a domestic inkjet, over a background of contour lines it does not control. The answer turned out to be a heavier weight than looked right on screen, a small halo in the paper colour behind every label, and ruthlessly fewer names than I first wanted.</p><p>I have printed about sixty of these. Four are framed.</p>"
+    }
+]

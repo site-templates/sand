@@ -1,0 +1,49 @@
+fields:
+    heading:
+        type: text
+        label: Heading
+        default: Projects
+    intro:
+        type: textarea
+        label: Introduction
+        rows: 3
+        default: Things I made because I wanted them to exist. A few are used by other people, which still surprises me.
+    showIntro:
+        type: toggle
+        label: Show the introduction
+        default: "1"
+    limit:
+        type: number
+        label: Projects to show
+        min: 1
+        max: 24
+        step: 1
+        default: "4"
+    showLink:
+        type: toggle
+        label: Show the all-projects link
+        default: "1"
+    linkLabel:
+        type: text
+        label: Link label
+        default: All projects
+    linkUrl:
+        type: url
+        label: Link URL
+        default: /projects
+    items:
+        type: repeater
+        label: Projects
+        source: project
+        item_label: title
+        add_button_label: Add project
+        sub_fields:
+            title: text
+            slug: text
+            link: url
+            kind: text
+            year: text
+            description: textarea
+            image: image
+            imageAlt: text
+            content: richtext

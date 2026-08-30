@@ -1,0 +1,39 @@
+fields:
+    heading:
+        type: text
+        label: Heading
+        default: Writing
+    limit:
+        type: number
+        label: Entries to show
+        min: 1
+        max: 24
+        step: 1
+        default: "4"
+    showLink:
+        type: toggle
+        label: Show the all-writing link
+        default: "1"
+    linkLabel:
+        type: text
+        label: Link label
+        default: All writing
+    linkUrl:
+        type: url
+        label: Link URL
+        default: /writing
+    items:
+        type: repeater
+        label: Posts
+        source: writing
+        item_label: title
+        add_button_label: Add post
+        sub_fields:
+            title: text
+            slug: text
+            link: url
+            description: textarea
+            dateFormatted: text
+            year: text
+            readTime: text
+            content: richtext

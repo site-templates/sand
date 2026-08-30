@@ -1,0 +1,30 @@
+fields:
+    label:
+        type: text
+        label: Section label
+        default: Now
+    heading:
+        type: text
+        label: Heading
+        default: Rewriting the selection model
+    body:
+        type: textarea
+        label: Body
+        rows: 4
+        default: Most of my week is inside the Vellum editor, replacing a selection model that assumed text was one-dimensional. It was not, and has not been since we added tables. This is the third attempt and the first one I believe.
+    period:
+        type: text
+        label: Period
+        default: August 2026
+    linkLabel:
+        type: text
+        label: Link label
+        default: The rest of the list
+    linkUrl:
+        type: url
+        label: Link URL
+        default: /now
+    showLink:
+        type: toggle
+        label: Show the link
+        default: "1"

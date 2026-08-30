@@ -1,0 +1,18 @@
+{
+    "name": "Cursor",
+    "dialect": "blade",
+    "description": "A dead-simple personal site for someone who writes and ships — off-white paper, one warm clay accent, tan watercolour washes bleeding off the edges, and a small preview card that follows your pointer down the writing and project lists.",
+    "icon": "🖊",
+    "repo": "https://github.com/site-templates/cursor",
+    "order": 35,
+    "category": "blog",
+    "theme": "light",
+    "accent": "#8A5A34",
+    "pages": [
+        "Home",
+        "Writing",
+        "Projects",
+        "About",
+        "Now"
+    ]
+}

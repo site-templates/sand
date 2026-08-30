@@ -1,0 +1,35 @@
+fields:
+    heading:
+        type: text
+        label: Heading
+        default: Say hello
+    intro:
+        type: textarea
+        label: Introduction
+        rows: 3
+        default: I read everything and reply to most of it. Notes about something I wrote are especially welcome, particularly the ones telling me I am wrong.
+    emailLabel:
+        type: text
+        label: Email label
+        default: theo@theobrandt.co
+    anchor:
+        type: text
+        label: Anchor id
+        default: connect
+    wash:
+        type: image
+        label: Closing watercolour wash
+        default: /images/wash-foot.jpg
+    showWash:
+        type: toggle
+        label: Show the closing wash
+        default: "1"
+    links:
+        type: repeater
+        label: Elsewhere links
+        source: site.social
+        item_label: label
+        add_button_label: Add link
+        sub_fields:
+            label: text
+            url: url

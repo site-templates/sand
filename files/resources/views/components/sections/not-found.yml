@@ -1,0 +1,30 @@
+fields:
+    code:
+        type: text
+        label: Status code
+        default: "404"
+    heading:
+        type: text
+        label: Heading
+        default: This page does not exist.
+    intro:
+        type: textarea
+        label: Introduction
+        rows: 3
+        default: It may have been renamed, or it may never have existed and you are testing me. Either way, the writing is still where it was.
+    primaryLabel:
+        type: text
+        label: Primary button label
+        default: Back to the start
+    primaryUrl:
+        type: url
+        label: Primary button link
+        default: /
+    secondaryLabel:
+        type: text
+        label: Secondary link label
+        default: All writing
+    secondaryUrl:
+        type: url
+        label: Secondary link
+        default: /writing

@@ -1,0 +1,32 @@
+fields:
+    heading:
+        type: text
+        label: Heading
+        default: More projects
+    limit:
+        type: number
+        label: Projects to consider
+        min: 1
+        max: 12
+        step: 1
+        default: "4"
+    current:
+        type: text
+        label: Slug to exclude
+        default: ""
+    items:
+        type: repeater
+        label: Projects
+        source: project
+        item_label: title
+        add_button_label: Add project
+        sub_fields:
+            title: text
+            slug: text
+            link: url
+            kind: text
+            year: text
+            description: textarea
+            image: image
+            imageAlt: text
+            content: richtext

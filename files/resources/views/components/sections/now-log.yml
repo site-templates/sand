@@ -1,0 +1,11 @@
+fields:
+    items:
+        type: repeater
+        label: Entries
+        source: now
+        item_label: heading
+        add_button_label: Add entry
+        sub_fields:
+            period: text
+            heading: text
+            body: textarea

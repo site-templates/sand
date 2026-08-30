@@ -1,0 +1,6 @@
+fields:
+    content:
+        type: textarea
+        label: Body HTML
+        rows: 16
+        default: ""

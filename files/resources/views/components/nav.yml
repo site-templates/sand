@@ -1,0 +1,18 @@
+fields:
+    showAvatar:
+        type: toggle
+        label: Show the avatar beside the name
+        default: "1"
+    avatar:
+        type: image
+        label: Avatar
+        default: /images/avatar.jpg
+    links:
+        type: repeater
+        label: Navigation links
+        source: site.nav_links
+        item_label: label
+        add_button_label: Add link
+        sub_fields:
+            label: text
+            url: url

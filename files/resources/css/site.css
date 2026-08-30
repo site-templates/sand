@@ -1,0 +1,336 @@
+@import "tailwindcss";
+
+@theme {
+    /* Off-white paper, not grey. Everything else is a tint of the same
+       warmth so the page reads as one sheet rather than stacked panels. */
+    --color-canvas: #FBFAF7;
+    --color-surface: #FFFFFF;
+    /* The one recessed tone — the Now band, code, inset wells. */
+    --color-raised: #F3F1EB;
+    --color-ink: #141310;
+    --color-muted: #6C665C;
+    /* Decorative only — it does not clear AA at any size, so nothing that
+       carries meaning may use it. Its one job is the prose list marker. */
+    --color-faint: #A8A296;
+    --color-line: #E8E3D8;
+    /* Warm clay. Reserved for link hover, the live dot, and focus rings —
+       never a filled surface, which is always ink. */
+    --color-accent: #8A5A34;
+    --color-accent-ink: #FFFDF9;
+    /* The one light that reads on the ink surface of a code block. */
+    --color-code-ink: #EDE9E1;
+
+    --font-display: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    /* Measurement only: dates, years, read times, counts. Never a costume
+       for "technical". */
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+}
+
+/* ---------------------------------------------------------------
+   Display sizes
+   --------------------------------------------------------------- */
+@utility display-hero {
+    font-size: clamp(2.375rem, 5.5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+}
+
+@utility display-page {
+    font-size: clamp(2rem, 4.2vw, 2.875rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+}
+
+@utility display-section {
+    font-size: clamp(1.5rem, 2.6vw, 1.875rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+}
+
+/* ---------------------------------------------------------------
+   Washes — the tan watercolour that bleeds off the top of every page
+   and back in above the closing block. The image is dissolved into
+   the canvas by a gradient so it never meets the page at an edge.
+   --------------------------------------------------------------- */
+.wash-veil {
+    background-image: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--color-canvas) 45%, transparent) 0%,
+        color-mix(in srgb, var(--color-canvas) 5%, transparent) 30%,
+        color-mix(in srgb, var(--color-canvas) 40%, transparent) 66%,
+        var(--color-canvas) 88%
+    );
+}
+
+.wash-veil-up {
+    background-image: linear-gradient(
+        to top,
+        color-mix(in srgb, var(--color-canvas) 40%, transparent) 0%,
+        color-mix(in srgb, var(--color-canvas) 15%, transparent) 38%,
+        var(--color-canvas) 88%
+    );
+}
+
+/* The washes are anchored to a page corner and masked away from the
+   reading column, so body copy always sits on clean paper. The mask does
+   the horizontal dissolve; the veil above does the vertical one. */
+.wash-frame-right {
+    -webkit-mask-image: linear-gradient(to left, #000 0%, #000 42%, transparent 96%);
+    mask-image: linear-gradient(to left, #000 0%, #000 42%, transparent 96%);
+}
+
+.wash-frame-left {
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 94%);
+    mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 94%);
+}
+
+/* A fine static film grain keeps the large flat areas from banding and
+   gives the paper a printed quality. */
+.grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+}
+
+/* ---------------------------------------------------------------
+   The header is bare at the top of the page and frosts once content
+   starts sliding beneath it.
+   --------------------------------------------------------------- */
+.site-header {
+    border-bottom: 1px solid transparent;
+    transition:
+        background-color 300ms ease,
+        border-color 300ms ease,
+        backdrop-filter 300ms ease;
+}
+
+.site-header.is-stuck {
+    background-color: color-mix(in srgb, var(--color-canvas) 78%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    border-bottom-color: var(--color-line);
+}
+
+/* ---------------------------------------------------------------
+   List rows — the whole site is really one interaction, repeated.
+   The title steps right and its marker fades in; the hairline warms.
+   Only the movement is transitioned; colour swaps are instant.
+   --------------------------------------------------------------- */
+.row-title {
+    transition: translate 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@variant hover {
+    .group\/row .row-title {
+        translate: 0.375rem 0;
+    }
+}
+
+.row-mark {
+    opacity: 0;
+    translate: -0.25rem 0;
+    transition:
+        opacity 220ms ease,
+        translate 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@variant hover {
+    .group\/row .row-mark {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+/* Reduced motion keeps the affordance and drops the travel. */
+@media (prefers-reduced-motion: reduce) {
+    .row-title,
+    .row-mark {
+        transition: none;
+        translate: none;
+    }
+
+    .row-mark {
+        opacity: 1;
+    }
+}
+
+/* A one-per-row project list, for a portfolio short enough that two
+   columns would look thin. The grammar has no ternary, so the choice
+   travels as an attribute and CSS does the switching. */
+[data-project-columns="1"] .project-grid {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+/* ---------------------------------------------------------------
+   The signature: a small card that follows the pointer while a
+   writing or project row is hovered. Scripting positions it by
+   setting `translate`; CSS owns the fade and the settle, so the two
+   never fight over one property.
+
+   It is hidden for everyone by default and revealed only by the
+   script, which refuses to run on coarse pointers and under reduced
+   motion — so touch users and the print view never meet it.
+   --------------------------------------------------------------- */
+.cursor-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    width: 15rem;
+    pointer-events: none;
+    opacity: 0;
+    scale: 0.94;
+    visibility: hidden;
+    transition:
+        opacity 200ms ease,
+        scale 320ms cubic-bezier(0.16, 1, 0.3, 1),
+        visibility 0s linear 200ms;
+    will-change: translate;
+}
+
+.cursor-preview.is-active {
+    opacity: 1;
+    scale: 1;
+    visibility: visible;
+    transition-delay: 0s, 0s, 0s;
+}
+
+/* ---------------------------------------------------------------
+   Motion
+   Every animated element's resting state is FULLY VISIBLE. Scripting
+   opts in by stamping .js-motion on the root, and that opt-in lives
+   inside a no-preference query — so reduced motion and a failed
+   script both resolve to visible content.
+   --------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+    :root.js-motion .reveal {
+        opacity: 0;
+        translate: 0 0.75rem;
+        transition:
+            opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+            translate 700ms cubic-bezier(0.16, 1, 0.3, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    :root.js-motion .reveal.is-visible {
+        opacity: 1;
+        translate: none;
+    }
+}
+
+/* ---------------------------------------------------------------
+   Prose — raw entry HTML, where utilities cannot reach the elements.
+   --------------------------------------------------------------- */
+.prose {
+    font-size: var(--text-lg);
+    line-height: --spacing(8);
+    color: var(--color-muted);
+}
+
+.prose > * + * {
+    margin-top: --spacing(6);
+}
+
+.prose h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-2xl);
+    line-height: --spacing(8);
+    letter-spacing: -0.025em;
+    color: var(--color-ink);
+}
+
+.prose h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-xl);
+    line-height: --spacing(7);
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+}
+
+.prose > h2 + *,
+.prose > h3 + * {
+    margin-top: --spacing(4);
+}
+
+.prose > * + h2 { margin-top: --spacing(14); }
+.prose > * + h3 { margin-top: --spacing(10); }
+
+.prose strong {
+    font-weight: 600;
+    color: var(--color-ink);
+}
+
+.prose em { font-style: italic; }
+
+.prose a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-line);
+}
+
+@variant hover {
+    .prose a {
+        color: var(--color-accent);
+        text-decoration-color: var(--color-accent);
+    }
+}
+
+.prose ul, .prose ol { padding-left: --spacing(5); }
+.prose ul { list-style-type: disc; }
+.prose ol { list-style-type: decimal; }
+.prose li::marker { color: var(--color-faint); }
+.prose li + li { margin-top: --spacing(2); }
+
+.prose blockquote {
+    border-left: 1px solid var(--color-accent);
+    padding-left: --spacing(6);
+    font-size: var(--text-xl);
+    line-height: --spacing(8);
+    color: var(--color-ink);
+}
+
+.prose img {
+    width: 100%;
+    border-radius: min(1vw, 10px);
+    outline: 1px solid rgb(20 19 16 / 0.06);
+    outline-offset: -1px;
+}
+
+.prose code {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    background-color: var(--color-raised);
+    padding: --spacing(0.5) --spacing(1.5);
+    border-radius: var(--radius-sm);
+    color: var(--color-ink);
+}
+
+.prose pre {
+    background-color: var(--color-ink);
+    color: var(--color-code-ink);
+    padding: --spacing(5);
+    border-radius: var(--radius-xl);
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: --spacing(6);
+}
+
+.prose pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+.prose hr { border-color: var(--color-line); }

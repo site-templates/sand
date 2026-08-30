@@ -1,0 +1,22 @@
+fields:
+    heading:
+        type: text
+        label: Heading
+        default: What I use
+    intro:
+        type: text
+        label: Introduction
+        default: A short list, kept short on purpose.
+    showIntro:
+        type: toggle
+        label: Show the introduction
+        default: "1"
+    items:
+        type: repeater
+        label: Tools
+        source: tools
+        item_label: name
+        add_button_label: Add tool
+        sub_fields:
+            name: text
+            note: text

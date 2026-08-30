@@ -1,0 +1,6 @@
+[
+    { "role": "Design engineer", "company": "Vellum", "period": "2024 — now", "note": "Building the editor: text selection, collaborative cursors, and the parts of a document that have to feel like paper." },
+    { "role": "Product designer", "company": "Northlight Health", "period": "2022 — 2024", "note": "Design systems and clinical documentation for hospital wards. Learned to design for a room instead of a laptop." },
+    { "role": "Front-end engineer", "company": "Fieldnote", "period": "2020 — 2022", "note": "Research tooling for a small distributed team. Shipped the first version of what later became Casefile." },
+    { "role": "Designer", "company": "Independent", "period": "2018 — 2020", "note": "Interface work for startups in Copenhagen and Berlin, mostly the difficult second version of a product." }
+]

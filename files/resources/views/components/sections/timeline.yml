@@ -1,0 +1,16 @@
+fields:
+    heading:
+        type: text
+        label: Heading
+        default: Where I have worked
+    items:
+        type: repeater
+        label: Roles
+        source: experience
+        item_label: role
+        add_button_label: Add role
+        sub_fields:
+            role: text
+            company: text
+            period: text
+            note: textarea

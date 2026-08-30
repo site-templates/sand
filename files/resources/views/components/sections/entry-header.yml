@@ -1,0 +1,30 @@
+fields:
+    title:
+        type: text
+        label: Title
+        default: Untitled
+    description:
+        type: textarea
+        label: Standfirst
+        rows: 3
+        default: ""
+    metaOne:
+        type: text
+        label: First meta value
+        default: ""
+    metaTwo:
+        type: text
+        label: Second meta value
+        default: ""
+    backLabel:
+        type: text
+        label: Back link label
+        default: All writing
+    backUrl:
+        type: url
+        label: Back link URL
+        default: /writing
+    showBack:
+        type: toggle
+        label: Show the back link
+        default: "1"

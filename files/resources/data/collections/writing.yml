@@ -1,0 +1,9 @@
+fields:
+    title: text
+    slug: text
+    link: url
+    description: textarea
+    dateFormatted: text
+    year: text
+    readTime: text
+    content: richtext

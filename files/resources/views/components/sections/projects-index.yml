@@ -1,0 +1,24 @@
+fields:
+    columns:
+        type: select
+        label: Columns
+        options:
+            "2": Two across
+            "1": One per row
+        default: "2"
+    items:
+        type: repeater
+        label: Projects
+        source: project
+        item_label: title
+        add_button_label: Add project
+        sub_fields:
+            title: text
+            slug: text
+            link: url
+            kind: text
+            year: text
+            description: textarea
+            image: image
+            imageAlt: text
+            content: richtext

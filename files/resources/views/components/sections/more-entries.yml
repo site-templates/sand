@@ -1,0 +1,31 @@
+fields:
+    heading:
+        type: text
+        label: Heading
+        default: More writing
+    limit:
+        type: number
+        label: Entries to consider
+        min: 1
+        max: 12
+        step: 1
+        default: "4"
+    current:
+        type: text
+        label: Slug to exclude
+        default: ""
+    items:
+        type: repeater
+        label: Entries
+        source: writing
+        item_label: title
+        add_button_label: Add entry
+        sub_fields:
+            title: text
+            slug: text
+            link: url
+            description: textarea
+            dateFormatted: text
+            year: text
+            readTime: text
+            content: richtext

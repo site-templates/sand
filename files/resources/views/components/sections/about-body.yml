@@ -1,0 +1,46 @@
+fields:
+    portrait:
+        type: image
+        label: Portrait
+        default: /images/avatar.jpg
+    portraitAlt:
+        type: text
+        label: Portrait alt text
+        default: Theo Brandt
+    showPortrait:
+        type: toggle
+        label: Show the portrait column
+        default: "1"
+    caption:
+        type: text
+        label: Portrait caption
+        default: Copenhagen, February 2026.
+    metaOneLabel:
+        type: text
+        label: First meta label
+        default: Based in
+    metaOneValue:
+        type: text
+        label: First meta value
+        default: Copenhagen
+    metaTwoLabel:
+        type: text
+        label: Second meta label
+        default: Currently
+    metaTwoValue:
+        type: text
+        label: Second meta value
+        default: Vellum
+    metaThreeLabel:
+        type: text
+        label: Third meta label
+        default: Writing since
+    metaThreeValue:
+        type: text
+        label: Third meta value
+        default: "2018"
+    content:
+        type: textarea
+        label: Body HTML
+        rows: 16
+        default: "<p>I am a design engineer, which is an awkward title for the thing I actually do: I design an interface and then I build it, and I have never been able to keep those two halves apart for long.</p><p>I started as a designer who could not hand off. A spec is a lossy format \u2014 you can describe a transition in a document, but you cannot feel it until it exists, and the thing you feel is almost never the thing you described. So I learned to build, and then I stopped writing specs, and the work got better.</p><h2>What I work on</h2><p>Editors, mostly. Text selection, collaborative cursors, the way a document behaves when two people are inside it at once. Before that, a design system for hospital wards, which taught me more about constraints than any product ever has. Before that, research tooling for a distributed team who were losing almost everything they learned.</p><p>The thread through all of it is interfaces where the material fights back. A text editor is not a form. A ward screen is not a laptop. When the medium has opinions, the design gets specific, and specific is where the interesting work lives.</p><h2>How I work</h2><p>Small teams, short cycles, a running thing by the end of the first week. I do not believe in the design phase. I believe in building something badly on Monday and being embarrassed by it on Friday, because that embarrassment carries more information than a month of documents.</p><p>I write here every few weeks, usually about something that annoyed me while making it work.</p>"

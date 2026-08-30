@@ -1,0 +1,4 @@
+fields:
+    period: text
+    heading: text
+    body: textarea
