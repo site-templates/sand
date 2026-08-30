@@ -16,13 +16,9 @@ fields:
         type: text
         label: Anchor id
         default: connect
-    wash:
-        type: image
-        label: Closing watercolour wash
-        default: /images/wash-foot.jpg
-    showWash:
+    showPattern:
         type: toggle
-        label: Show the closing wash
+        label: Show the dot-paper texture
         default: "1"
     links:
         type: repeater

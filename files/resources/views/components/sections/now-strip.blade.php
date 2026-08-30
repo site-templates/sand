@@ -6,8 +6,13 @@
     'linkLabel' => 'The rest of the list',
     'linkUrl' => '/now',
     'showLink' => '1',
+    'showPattern' => '1',
 ])
-<section class="border-y border-line bg-raised">
+<section class="relative isolate overflow-hidden border-y border-line bg-raised">
+    @if ($showPattern)
+        <div class="dot-field dot-fade-x pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+    @endif
+
     <div class="mx-auto max-w-3xl px-6 py-16 md:py-20">
         <div class="flex items-baseline justify-between gap-6">
             <h2 class="display-section reveal font-display font-semibold text-balance">{{ $label }}</h2>

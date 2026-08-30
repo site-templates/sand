@@ -1,14 +1,12 @@
 @props([
-    'showAvatar' => '1',
-    'avatar' => '/images/avatar.jpg',
+    'showName' => '1',
 ])
 <header class="site-header sticky top-0 z-20" data-header>
     <div class="mx-auto flex h-16 max-w-3xl items-center gap-3 px-6">
-        <a href="/" aria-label="Homepage" class="flex shrink-0 items-center gap-2.5 rounded-full py-2.5 font-display text-base font-semibold tracking-tight hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
-            @if ($showAvatar)
-                <img src="{{ $avatar }}" alt="" width="80" height="80" class="size-7 shrink-0 rounded-full object-cover outline-1 -outline-offset-1 outline-ink/10">
+        <a href="/" aria-label="Homepage" class="flex shrink-0 items-center rounded-full py-2.5 font-display text-base font-semibold tracking-tight hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
+            @if ($showName)
+                <span>{{ $site->author }}</span>
             @endif
-            <span>{{ $site->author }}</span>
         </a>
 
         <nav aria-label="Primary" class="ml-auto hidden items-center gap-1 sm:flex">

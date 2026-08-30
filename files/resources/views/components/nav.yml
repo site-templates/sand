@@ -1,12 +1,8 @@
 fields:
-    showAvatar:
+    showName:
         type: toggle
-        label: Show the avatar beside the name
+        label: Show the name in the bar
         default: "1"
-    avatar:
-        type: image
-        label: Avatar
-        default: /images/avatar.jpg
     links:
         type: repeater
         label: Navigation links

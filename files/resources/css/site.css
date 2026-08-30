@@ -17,6 +17,9 @@
        never a filled surface, which is always ink. */
     --color-accent: #8A5A34;
     --color-accent-ink: #FFFDF9;
+    /* The dot-paper grid. Barely darker than a hairline: at 1px on the canvas
+       it should read as texture, never as a pattern you can count. */
+    --color-dot: #DFD9CB;
     /* The one light that reads on the ink surface of a code block. */
     --color-code-ink: #EDE9E1;
 
@@ -54,51 +57,37 @@ body {
 }
 
 /* ---------------------------------------------------------------
-   Washes — the tan watercolour that bleeds off the top of every page
-   and back in above the closing block. The image is dissolved into
-   the canvas by a gradient so it never meets the page at an edge.
+   Dot paper — the page texture.
+
+   Drawn with a gradient rather than photographed, so it stays exactly one
+   pixel crisp at any density, costs no bytes, and re-tints with the token.
+   It never covers a whole page: each field is masked down to the one corner
+   the reading column leaves empty, and dissolves to nothing well before it
+   reaches any text.
    --------------------------------------------------------------- */
-.wash-veil {
-    background-image: linear-gradient(
-        to bottom,
-        color-mix(in srgb, var(--color-canvas) 45%, transparent) 0%,
-        color-mix(in srgb, var(--color-canvas) 5%, transparent) 30%,
-        color-mix(in srgb, var(--color-canvas) 40%, transparent) 66%,
-        var(--color-canvas) 88%
-    );
+.dot-field {
+    /* The falloff matters more than the radius: a hard stop renders as a
+       little square on a 2x screen, so the colour is carried out to a wider
+       transparent stop and the browser antialiases a round dot. */
+    background-image: radial-gradient(circle at center, var(--color-dot) 0.5px, transparent 1.6px);
+    background-size: 22px 22px;
 }
 
-.wash-veil-up {
-    background-image: linear-gradient(
-        to top,
-        color-mix(in srgb, var(--color-canvas) 40%, transparent) 0%,
-        color-mix(in srgb, var(--color-canvas) 15%, transparent) 38%,
-        var(--color-canvas) 88%
-    );
+.dot-fade-tr {
+    -webkit-mask-image: radial-gradient(105% 88% at 100% 0%, #000 0%, rgb(0 0 0 / 0.55) 34%, transparent 70%);
+    mask-image: radial-gradient(105% 88% at 100% 0%, #000 0%, rgb(0 0 0 / 0.55) 34%, transparent 70%);
 }
 
-/* The washes are anchored to a page corner and masked away from the
-   reading column, so body copy always sits on clean paper. The mask does
-   the horizontal dissolve; the veil above does the vertical one. */
-.wash-frame-right {
-    -webkit-mask-image: linear-gradient(to left, #000 0%, #000 42%, transparent 96%);
-    mask-image: linear-gradient(to left, #000 0%, #000 42%, transparent 96%);
+.dot-fade-bl {
+    -webkit-mask-image: radial-gradient(100% 92% at 0% 100%, #000 0%, rgb(0 0 0 / 0.5) 36%, transparent 72%);
+    mask-image: radial-gradient(100% 92% at 0% 100%, #000 0%, rgb(0 0 0 / 0.5) 36%, transparent 72%);
 }
 
-.wash-frame-left {
-    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 94%);
-    mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 94%);
-}
-
-/* A fine static film grain keeps the large flat areas from banding and
-   gives the paper a printed quality. */
-.grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    mix-blend-mode: multiply;
+/* The Now band is already a tinted slab, so its field runs the full width and
+   simply thins out across it rather than hiding in a corner. */
+.dot-fade-x {
+    -webkit-mask-image: linear-gradient(to left, #000 0%, rgb(0 0 0 / 0.35) 42%, transparent 88%);
+    mask-image: linear-gradient(to left, #000 0%, rgb(0 0 0 / 0.35) 42%, transparent 88%);
 }
 
 /* ---------------------------------------------------------------

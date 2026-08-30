@@ -75,30 +75,6 @@
     }
 
     /* ---------------------------------------------------------------
-       The wash drifts a little slower than the page. A shallow parallax
-       only — enough to feel like depth, never enough to notice.
-       --------------------------------------------------------------- */
-    var wash = document.querySelector('[data-wash]');
-
-    if (wash && animate) {
-        var washTicking = false;
-
-        var placeWash = function () {
-            var offset = Math.min(window.scrollY, 600) * 0.15;
-            wash.style.translate = '0 ' + offset.toFixed(1) + 'px';
-            washTicking = false;
-        };
-
-        window.addEventListener('scroll', function () {
-            if (washTicking) return;
-            washTicking = true;
-            window.requestAnimationFrame(placeWash);
-        }, { passive: true });
-
-        placeWash();
-    }
-
-    /* ---------------------------------------------------------------
        The pointer preview — the signature.
 
        Hovering a writing or project row fades in a small card that

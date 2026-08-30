@@ -1,9 +1,11 @@
 # Cursor — design system
 
 ## Atmosphere
-One sheet of off-white paper, held to a narrow column, with a tan watercolour
-wash bleeding off the top of the page and back in above the closing block.
-Nothing is boxed. Sibling content is separated by hairlines and whitespace,
+One sheet of off-white paper, held to a narrow column, with a dot-paper grid
+fading in at the corner the reading column leaves empty — top-right of every
+page, bottom-left of the closing block, and thinning across the Now band. It
+is drawn in CSS, never photographed, so it stays one pixel crisp at any
+density and costs nothing to download. Nothing is boxed. Sibling content is separated by hairlines and whitespace,
 never by cards. The site is really one interaction repeated — a list row you
 want to hover — and everything else gets out of its way.
 
@@ -19,6 +21,7 @@ want to hover — and everything else gets out of its way.
 | line | `#E8E3D8` | hairlines and dividers |
 | accent | `#8A5A34` | warm clay — link hover, the live dot, focus rings |
 | accent-ink | `#FFFDF9` | text on accent |
+| dot | `#DFD9CB` | the dot-paper grid |
 | code-ink | `#EDE9E1` | the one light that reads on a code block |
 
 **Every filled surface is ink, never accent.** The accent is a spice: it
@@ -26,10 +29,9 @@ appears on hover, on the availability dot, and on focus rings, and nowhere
 else. `faint` never carries text of any kind — it does not clear AA at any size, and
 its only job in the template is the prose list marker. Dates, kinds, captions,
 and the copyright line are all `muted`, which clears AA at 5.4:1.
-The palette is black, off-white, and tan; the watercolour supplies the tan and
-the page supplies the rest. Nothing outside this block names a colour — the
-wash veils and the frosted header are `color-mix` of `canvas`, so retuning the
-paper retunes them with it.
+The palette is black, off-white, and tan, and the paper supplies the tan.
+Nothing outside this block names a colour — the frosted header is a
+`color-mix` of `canvas`, so retuning the paper retunes it too.
 
 ## Typography
 - Display: **Schibsted Grotesk** — h1, section headings, row titles, the
@@ -52,8 +54,14 @@ Radii are small and consistent — `rounded-xl` for the preview card and the
 mobile menu, `rounded-full` for the one pill, `min(1vw,10px)` for images.
 
 ## Components
-The header is bare at the top of the page and frosts once content slides
-beneath it. There are no cards: writing and project rows are hairline-separated
+The header carries the name and the links and nothing else — the avatar
+appears once, in the homepage hero, and is never repeated in the bar. The bar
+is bare at the top of the page and frosts once content slides beneath it.
+
+**Every row on the site reads the same way: the thing you came for on the
+left, its meta right-aligned opposite.** Writing, projects, the timeline, and
+the Now log all share that grammar — no left gutter, no indented titles.
+There are no cards: writing and project rows are hairline-separated
 `<a>` elements whose title steps 6px right on hover while a small marker fades
 in beside it — colour swaps instantly, only the travel is transitioned.
 
@@ -87,6 +95,7 @@ on anything that is not a link.
     --color-line: #E8E3D8;
     --color-accent: #8A5A34;
     --color-accent-ink: #FFFDF9;
+    --color-dot: #DFD9CB;
     --color-code-ink: #EDE9E1;
 
     --font-display: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
