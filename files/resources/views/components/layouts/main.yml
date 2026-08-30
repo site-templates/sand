@@ -12,6 +12,14 @@ fields:
         type: toggle
         label: Show the dot-paper texture
         default: "1"
+    wash:
+        type: image
+        label: Top watercolour wash
+        default: /images/wash-top.jpg
+    showWash:
+        type: toggle
+        label: Show the watercolour wash
+        default: "1"
     showPreviews:
         type: toggle
         label: Show pointer previews on list rows

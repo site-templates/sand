@@ -1,11 +1,16 @@
-# Cursor — design system
+# Sand — design system
 
 ## Atmosphere
-One sheet of off-white paper, held to a narrow column, with a dot-paper grid
+One sheet of off-white paper, held to a narrow column, with two textures
 fading in at the corner the reading column leaves empty — top-right of every
-page, bottom-left of the closing block, and thinning across the Now band. It
-is drawn in CSS, never photographed, so it stays one pixel crisp at any
-density and costs nothing to download. Nothing is boxed. Sibling content is separated by hairlines and whitespace,
+page, bottom-left of the closing block. A **dot-paper grid** drawn in CSS
+(never photographed, so it stays one pixel crisp at any density and costs
+nothing to download) sits over a **pale sand watercolour** at `opacity-45`,
+roughly half the strength the paint first carried: on a page this light,
+anything stronger stops reading as light and starts reading as a stain. The
+dot grid also thins across the Now band, where the wash does not go. Both are
+masked off the reading column, and each has its own toggle. Nothing is
+boxed. Sibling content is separated by hairlines and whitespace,
 never by cards. The site is really one interaction repeated — a list row you
 want to hover — and everything else gets out of its way.
 
@@ -22,6 +27,8 @@ want to hover — and everything else gets out of its way.
 | accent | `#8A5A34` | warm clay — link hover, the live dot, focus rings |
 | accent-ink | `#FFFDF9` | text on accent |
 | dot | `#DFD9CB` | the dot-paper grid |
+
+The two washes are the only photographs in the chrome; everything else is drawn.
 | code-ink | `#EDE9E1` | the one light that reads on a code block |
 
 **Every filled surface is ink, never accent.** The accent is a spice: it

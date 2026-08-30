@@ -1,19 +1,40 @@
 {
-    "name": "Cursor",
+    "name": "Sand",
     "author": "Theo Brandt",
     "role": "Design engineer",
     "email": "theo@theobrandt.co",
     "location": "Copenhagen",
     "status": "Building the editor at Vellum, and drawing maps on Sundays.",
     "nav_links": [
-        { "label": "Writing", "url": "/writing" },
-        { "label": "Projects", "url": "/projects" },
-        { "label": "About", "url": "/about" }
+        {
+            "label": "Writing",
+            "url": "/writing"
+        },
+        {
+            "label": "Projects",
+            "url": "/projects"
+        },
+        {
+            "label": "About",
+            "url": "/about"
+        }
     ],
     "social": [
-        { "label": "GitHub", "url": "https://github.com" },
-        { "label": "Are.na", "url": "https://are.na" },
-        { "label": "Read.cv", "url": "https://read.cv" },
-        { "label": "RSS", "url": "/feed.xml" }
+        {
+            "label": "GitHub",
+            "url": "https://github.com"
+        },
+        {
+            "label": "Are.na",
+            "url": "https://are.na"
+        },
+        {
+            "label": "Read.cv",
+            "url": "https://read.cv"
+        },
+        {
+            "label": "RSS",
+            "url": "/feed.xml"
+        }
     ]
 }

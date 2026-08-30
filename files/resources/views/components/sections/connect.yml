@@ -20,6 +20,14 @@ fields:
         type: toggle
         label: Show the dot-paper texture
         default: "1"
+    wash:
+        type: image
+        label: Closing watercolour wash
+        default: /images/wash-foot.jpg
+    showWash:
+        type: toggle
+        label: Show the watercolour wash
+        default: "1"
     links:
         type: repeater
         label: Elsewhere links

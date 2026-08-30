@@ -57,6 +57,43 @@ body {
 }
 
 /* ---------------------------------------------------------------
+   Washes — a pale sand watercolour behind the same two corners the dot
+   grid occupies. It sits under the dots and carries about half the
+   strength it had on the first pass: on a page this light, any more and
+   the paint stops reading as light and starts reading as a stain.
+   --------------------------------------------------------------- */
+.wash-veil {
+    background-image: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--color-canvas) 45%, transparent) 0%,
+        color-mix(in srgb, var(--color-canvas) 5%, transparent) 30%,
+        color-mix(in srgb, var(--color-canvas) 40%, transparent) 66%,
+        var(--color-canvas) 88%
+    );
+}
+
+.wash-veil-up {
+    background-image: linear-gradient(
+        to top,
+        color-mix(in srgb, var(--color-canvas) 40%, transparent) 0%,
+        color-mix(in srgb, var(--color-canvas) 15%, transparent) 38%,
+        var(--color-canvas) 88%
+    );
+}
+
+/* Each wash is masked off the reading column, the same way its dot field
+   is — body copy never sits on paint. */
+.wash-frame-right {
+    -webkit-mask-image: linear-gradient(to left, #000 0%, #000 42%, transparent 96%);
+    mask-image: linear-gradient(to left, #000 0%, #000 42%, transparent 96%);
+}
+
+.wash-frame-left {
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 94%);
+    mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 94%);
+}
+
+/* ---------------------------------------------------------------
    Dot paper — the page texture.
 
    Drawn with a gradient rather than photographed, so it stays exactly one
