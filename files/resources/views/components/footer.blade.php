@@ -25,7 +25,7 @@
                     <h2 class="text-sm font-medium text-muted">Elsewhere</h2>
                     <ul role="list" class="mt-2 space-y-0.5">
                         @foreach ($site->social as $item)
-                            <li class="text-base"><a href="{{ $item->url }}" class="inline-block py-1.5 font-normal hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{{ $item->label }}</a></li>
+                            <li class="text-base"><a href="{{ $item->url }}" target="_blank" rel="noopener" class="inline-block py-1.5 font-normal hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{{ $item->label }}</a></li>
                         @endforeach
                     </ul>
                 </div>

@@ -24,7 +24,7 @@
 
         <ul role="list" class="reveal mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6 [--reveal-delay:210ms]">
             @foreach ($site->social as $item)
-                <li class="text-base"><a href="{{ $item->url }}" class="inline-block py-1.5 font-normal text-muted hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{{ $item->label }}</a></li>
+                <li class="text-base"><a href="{{ $item->url }}" target="_blank" rel="noopener" class="inline-block py-1.5 font-normal text-muted hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{{ $item->label }}</a></li>
             @endforeach
         </ul>
     </div>
