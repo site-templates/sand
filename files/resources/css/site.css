@@ -99,45 +99,49 @@ body {
     transition: translate 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@variant hover {
-    .group\/row .row-title {
-        translate: 0.375rem 0;
-    }
-}
-
 .row-mark {
     opacity: 0;
-    translate: -0.25rem 0;
-    transition:
-        opacity 220ms ease,
-        translate 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 220ms ease;
 }
 
-@variant hover {
-    .group\/row .row-mark {
+/* The selector has to name the row itself. `@variant hover` looks like the
+   right tool here and is not: outside an `@utility` it compiles to
+   `:scope:hover ...`, and at the top level `:scope` is the root element — so
+   hovering anywhere on the page fired every row on the page at once. */
+@media (hover: hover) {
+    .group\/row:hover .row-mark {
         opacity: 1;
+    }
+}
+
+/* Nothing to hover with, so the marker simply stays: on a touch screen it is
+   the only thing saying the row is a link. */
+@media (hover: none) {
+    .row-mark {
+        opacity: 1;
+    }
+}
+
+/* The travel is the part that is motion, so it is opt-in on its own. Under
+   reduced motion the row still answers the pointer — the marker fades in —
+   it just does not move. */
+@media (prefers-reduced-motion: no-preference) {
+    .row-mark {
+        translate: -0.25rem 0;
+        transition:
+            opacity 220ms ease,
+            translate 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+    .group\/row:hover .row-title {
+        translate: 0.375rem 0;
+    }
+
+    .group\/row:hover .row-mark {
         translate: 0 0;
     }
-}
-
-/* Reduced motion keeps the affordance and drops the travel. */
-@media (prefers-reduced-motion: reduce) {
-    .row-title,
-    .row-mark {
-        transition: none;
-        translate: none;
-    }
-
-    .row-mark {
-        opacity: 1;
-    }
-}
-
-/* A one-per-row project list, for a portfolio short enough that two
-   columns would look thin. The grammar has no ternary, so the choice
-   travels as an attribute and CSS does the switching. */
-[data-project-columns="1"] .project-grid {
-    grid-template-columns: minmax(0, 1fr);
 }
 
 /* ---------------------------------------------------------------
@@ -250,8 +254,8 @@ body {
     text-decoration-color: var(--color-line);
 }
 
-@variant hover {
-    .prose a {
+@media (hover: hover) {
+    .prose a:hover {
         color: var(--color-accent);
         text-decoration-color: var(--color-accent);
     }
