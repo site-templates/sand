@@ -1,10 +1,10 @@
 {
     "name": "Sand",
     "dialect": "blade",
-    "description": "A dead-simple personal site for someone who writes and ships — off-white paper, one warm clay accent, a dot-paper grid and a pale sand watercolour fading in at the edges, and a small preview card that follows your pointer down the writing and project lists.",
+    "description": "A dead-simple personal site for someone who writes and ships — off-white paper, one warm clay accent, a sand watercolour fading in at the edges, and a small preview card that follows your pointer down the writing and project lists.",
     "icon": "🏜",
     "repo": "https://github.com/site-templates/sand",
-    "order": 35,
+    "order": 43,
     "category": "blog",
     "theme": "light",
     "accent": "#8A5A34",
