@@ -3,20 +3,15 @@
     'intro' => 'I read everything and reply to most of it. Notes about something I wrote are especially welcome, particularly the ones telling me I am wrong.',
     'emailLabel' => 'theo@theobrandt.co',
     'anchor' => 'connect',
-    'showPattern' => '1',
     'wash' => '/images/wash-foot.jpg',
     'showWash' => '1',
 ])
 <section id="{{ $anchor }}" class="relative isolate overflow-hidden border-t border-line">
     @if ($showWash)
-        <div class="wash-frame-left pointer-events-none absolute bottom-0 left-0 -z-20 h-[26rem] w-[58%] max-w-2xl overflow-hidden" aria-hidden="true">
-            <img src="{{ $wash }}" alt="" width="1500" height="643" class="size-full object-cover object-[18%_62%] opacity-45">
+        <div class="wash-frame-left pointer-events-none absolute bottom-0 left-0 -z-10 h-[26rem] w-[58%] max-w-2xl overflow-hidden" aria-hidden="true">
+            <img src="{{ $wash }}" alt="" width="1500" height="643" class="size-full object-cover object-[18%_62%] opacity-75">
             <div class="wash-veil-up absolute inset-0"></div>
         </div>
-    @endif
-
-    @if ($showPattern)
-        <div class="dot-field dot-fade-bl pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
     @endif
 
     <div class="mx-auto max-w-3xl px-6 py-16 md:py-24">

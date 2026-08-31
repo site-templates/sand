@@ -1,7 +1,6 @@
 @props([
     'title' => 'Theo Brandt — Design engineer',
     'description' => 'Design engineer in Copenhagen. I build interfaces, write about the parts that resist a process, and keep a short list of things I am working on.',
-    'showPattern' => '1',
     'wash' => '/images/wash-top.jpg',
     'showWash' => '1',
     'showPreviews' => '1',
@@ -24,14 +23,10 @@
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-canvas">Skip to content</a>
 
     @if ($showWash)
-        <div class="wash-frame-right pointer-events-none absolute top-0 right-0 -z-20 h-[34rem] w-[62%] max-w-3xl overflow-hidden" aria-hidden="true">
-            <img src="{{ $wash }}" alt="" width="1500" height="643" class="size-full object-cover object-[72%_30%] opacity-45" data-wash>
+        <div class="wash-frame-right pointer-events-none absolute top-0 right-0 -z-10 h-[34rem] w-[62%] max-w-3xl overflow-hidden" aria-hidden="true">
+            <img src="{{ $wash }}" alt="" width="1500" height="643" class="size-full object-cover object-[72%_30%] opacity-75" data-wash>
             <div class="wash-veil absolute inset-0"></div>
         </div>
-    @endif
-
-    @if ($showPattern)
-        <div class="dot-field dot-fade-tr pointer-events-none absolute inset-x-0 top-0 -z-10 h-[38rem]" aria-hidden="true"></div>
     @endif
 
     <x-nav/>

@@ -17,9 +17,6 @@
        never a filled surface, which is always ink. */
     --color-accent: #8A5A34;
     --color-accent-ink: #FFFDF9;
-    /* The dot-paper grid. Barely darker than a hairline: at 1px on the canvas
-       it should read as texture, never as a pattern you can count. */
-    --color-dot: #DFD9CB;
     /* The one light that reads on the ink surface of a code block. */
     --color-code-ink: #EDE9E1;
 
@@ -91,58 +88,6 @@ body {
 .wash-frame-left {
     -webkit-mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 94%);
     mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 94%);
-}
-
-/* ---------------------------------------------------------------
-   Dot paper — the page texture.
-
-   Drawn with a gradient rather than photographed, so it stays exactly one
-   pixel crisp at any density, costs no bytes, and re-tints with the token.
-   It never covers a whole page: each field is masked down to the one corner
-   the reading column leaves empty, and dissolves to nothing well before it
-   reaches any text.
-   --------------------------------------------------------------- */
-.dot-field {
-    /* The falloff matters more than the radius: a hard stop renders as a
-       little square on a 2x screen, so the colour is carried out to a wider
-       transparent stop and the browser antialiases a round dot. */
-    background-image: radial-gradient(circle at center, var(--color-dot) 0.5px, transparent 1.6px);
-    background-size: 22px 22px;
-}
-
-.dot-fade-tr {
-    -webkit-mask-image: radial-gradient(105% 88% at 100% 0%, #000 0%, rgb(0 0 0 / 0.55) 34%, transparent 70%);
-    mask-image: radial-gradient(105% 88% at 100% 0%, #000 0%, rgb(0 0 0 / 0.55) 34%, transparent 70%);
-}
-
-.dot-fade-bl {
-    -webkit-mask-image: radial-gradient(100% 92% at 0% 100%, #000 0%, rgb(0 0 0 / 0.5) 36%, transparent 72%);
-    mask-image: radial-gradient(100% 92% at 0% 100%, #000 0%, rgb(0 0 0 / 0.5) 36%, transparent 72%);
-}
-
-/* The Now band is already a tinted slab, so its field runs the full width and
-   simply thins out across it rather than hiding in a corner. */
-.dot-fade-x {
-    -webkit-mask-image: linear-gradient(to left, #000 0%, rgb(0 0 0 / 0.35) 42%, transparent 88%);
-    mask-image: linear-gradient(to left, #000 0%, rgb(0 0 0 / 0.35) 42%, transparent 88%);
-}
-
-/* ---------------------------------------------------------------
-   The header is bare at the top of the page and frosts once content
-   starts sliding beneath it.
-   --------------------------------------------------------------- */
-.site-header {
-    border-bottom: 1px solid transparent;
-    transition:
-        background-color 300ms ease,
-        border-color 300ms ease,
-        backdrop-filter 300ms ease;
-}
-
-.site-header.is-stuck {
-    background-color: color-mix(in srgb, var(--color-canvas) 78%, transparent);
-    backdrop-filter: blur(14px) saturate(140%);
-    border-bottom-color: var(--color-line);
 }
 
 /* ---------------------------------------------------------------

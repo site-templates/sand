@@ -46,35 +46,6 @@
     }
 
     /* ---------------------------------------------------------------
-       The header frosts once the page slides beneath it. This is
-       legibility rather than decoration, so it runs whatever the motion
-       preference — only the transition is cosmetic.
-       --------------------------------------------------------------- */
-    var header = document.querySelector('[data-header]');
-
-    if (header) {
-        var stuck = null;
-        var headerTicking = false;
-
-        var frost = function () {
-            var next = window.scrollY > 8;
-            if (next !== stuck) {
-                stuck = next;
-                header.classList.toggle('is-stuck', next);
-            }
-            headerTicking = false;
-        };
-
-        window.addEventListener('scroll', function () {
-            if (headerTicking) return;
-            headerTicking = true;
-            window.requestAnimationFrame(frost);
-        }, { passive: true });
-
-        frost();
-    }
-
-    /* ---------------------------------------------------------------
        The wash drifts a little slower than the page. A shallow parallax
        only — enough to feel like depth, never enough to notice.
        --------------------------------------------------------------- */

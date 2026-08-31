@@ -28,7 +28,3 @@ fields:
         type: toggle
         label: Show the link
         default: "1"
-    showPattern:
-        type: toggle
-        label: Show the dot-paper texture
-        default: "1"

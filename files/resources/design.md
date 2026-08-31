@@ -1,16 +1,15 @@
 # Sand — design system
 
 ## Atmosphere
-One sheet of off-white paper, held to a narrow column, with two textures
-fading in at the corner the reading column leaves empty — top-right of every
-page, bottom-left of the closing block. A **dot-paper grid** drawn in CSS
-(never photographed, so it stays one pixel crisp at any density and costs
-nothing to download) sits over a **pale sand watercolour** at `opacity-45`,
-roughly half the strength the paint first carried: on a page this light,
-anything stronger stops reading as light and starts reading as a stain. The
-dot grid also thins across the Now band, where the wash does not go. Both are
-masked off the reading column, and each has its own toggle. Nothing is
-boxed. Sibling content is separated by hairlines and whitespace,
+One sheet of off-white paper, held to a narrow column, with a **sand
+watercolour** fading in at the corner the reading column leaves empty —
+top-right of every page, bottom-left of the closing block. The paint is warm
+all the way down its range: wheat through dune to a soft umber in the deepest
+pools, with no grey anywhere. That is what lets it sit at `opacity-75` and
+still read as light on paper; a wash with cool pigment in it reads as a stain
+on a ground this warm, however faint you make it. Both washes are masked off
+the reading column, so body copy is always on bare paper, and each has its own
+toggle. Nothing is boxed. Sibling content is separated by hairlines and whitespace,
 never by cards. The site is really one interaction repeated — a list row you
 want to hover — and everything else gets out of its way.
 
@@ -26,9 +25,7 @@ want to hover — and everything else gets out of its way.
 | line | `#E8E3D8` | hairlines and dividers |
 | accent | `#8A5A34` | warm clay — link hover, the live dot, focus rings |
 | accent-ink | `#FFFDF9` | text on accent |
-| dot | `#DFD9CB` | the dot-paper grid |
 
-The two washes are the only photographs in the chrome; everything else is drawn.
 | code-ink | `#EDE9E1` | the one light that reads on a code block |
 
 **Every filled surface is ink, never accent.** The accent is a spice: it
@@ -62,8 +59,9 @@ mobile menu, `rounded-full` for the one pill, `min(1vw,10px)` for images.
 
 ## Components
 The header carries the name and the links and nothing else — the avatar
-appears once, in the homepage hero, and is never repeated in the bar. The bar
-is bare at the top of the page and frosts once content slides beneath it.
+appears once, in the homepage hero, and is never repeated in the bar. It is
+**not sticky**: it sits at the top of the document and scrolls away with it,
+so a reader gets the whole viewport for the writing.
 
 **Every row on the site reads the same way: the thing you came for on the
 left, its meta right-aligned opposite.** Writing, projects, the timeline, and
@@ -102,7 +100,6 @@ on anything that is not a link.
     --color-line: #E8E3D8;
     --color-accent: #8A5A34;
     --color-accent-ink: #FFFDF9;
-    --color-dot: #DFD9CB;
     --color-code-ink: #EDE9E1;
 
     --font-display: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;

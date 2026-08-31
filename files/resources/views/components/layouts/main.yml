@@ -8,10 +8,6 @@ fields:
         label: Meta description
         rows: 3
         default: Design engineer in Copenhagen. I build interfaces, write about the parts that resist a process, and keep a short list of things I am working on.
-    showPattern:
-        type: toggle
-        label: Show the dot-paper texture
-        default: "1"
     wash:
         type: image
         label: Top watercolour wash

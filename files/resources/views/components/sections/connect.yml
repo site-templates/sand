@@ -16,10 +16,6 @@ fields:
         type: text
         label: Anchor id
         default: connect
-    showPattern:
-        type: toggle
-        label: Show the dot-paper texture
-        default: "1"
     wash:
         type: image
         label: Closing watercolour wash
