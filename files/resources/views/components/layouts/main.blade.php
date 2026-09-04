@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     @vite(['resources/css/site.css'])
 </head>
-<body class="isolate bg-canvas font-sans text-ink">
+<body class="isolate bg-canvas font-sans text-ink" data-instant-navigation>
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-canvas">Skip to content</a>
 
     @if ($showWash)

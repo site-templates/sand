@@ -1,3 +1,9 @@
+/*
+   Pages change in place (data-instant-navigation on <body>): the wash, the
+   preview card and the menu bind once, while everything inside <main> —
+   the reveals and the rows that raise the card — is torn down and set up
+   again for each new page through setUp(root).
+*/
 (function () {
     'use strict';
 
@@ -18,32 +24,39 @@
         root.classList.add('js-motion');
     }
 
+    // What the current <main> owns — released before the next one is set up.
+    var revealObserver = null;
+    var revealTimer = null;
+
     /* ---------------------------------------------------------------
        Scroll reveals
        --------------------------------------------------------------- */
-    var revealables = document.querySelectorAll('.reveal');
+    var revealOnScroll = function (scope) {
+        var revealables = scope.querySelectorAll('.reveal');
 
-    var revealAll = function () {
-        revealables.forEach(function (el) { el.classList.add('is-visible'); });
+        var revealAll = function () {
+            revealables.forEach(function (el) { el.classList.add('is-visible'); });
+        };
+
+        if (animate && 'IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                });
+            }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+
+            revealables.forEach(function (el) { observer.observe(el); });
+            revealObserver = observer;
+
+            // Last resort. If the observer never fires — a browser quirk, a tab
+            // that went to sleep between load and paint — nothing is left hidden.
+            revealTimer = window.setTimeout(revealAll, 2500);
+        } else {
+            revealAll();
+        }
     };
-
-    if (animate && 'IntersectionObserver' in window) {
-        var revealObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('is-visible');
-                revealObserver.unobserve(entry.target);
-            });
-        }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
-
-        revealables.forEach(function (el) { revealObserver.observe(el); });
-
-        // Last resort. If the observer never fires — a browser quirk, a tab
-        // that went to sleep between load and paint — nothing is left hidden.
-        window.setTimeout(revealAll, 2500);
-    } else {
-        revealAll();
-    }
 
     /* ---------------------------------------------------------------
        The wash drifts a little slower than the page. A shallow parallax
@@ -77,12 +90,15 @@
        already works: it never appears on a coarse pointer (where there
        is no pointer to follow), nor under reduced motion, and the card
        starts hidden in CSS so neither case ever sees it.
+
+       The card lives outside <main> and is wired once; the rows arrive
+       with each page and are bound by setUp.
        --------------------------------------------------------------- */
     var card = document.querySelector('[data-cursor-preview]');
-    var rows = document.querySelectorAll('[data-preview-title]');
     var finePointer = window.matchMedia('(pointer: fine)').matches;
+    var preview = null;
 
-    if (card && rows.length && finePointer && animate) {
+    if (card && finePointer && animate) {
         // The template gallery serves this document under a path prefix and
         // rewrites href/src attributes to match it. Data attributes are not
         // rewritten, so preview paths are rebased against the one rewritten
@@ -185,25 +201,33 @@
             card.classList.remove('is-active');
         };
 
-        rows.forEach(function (row) {
-            row.addEventListener('pointerenter', function (event) {
-                if (event.pointerType !== 'mouse') return;
-                show(row, event);
+        var bindRows = function (scope) {
+            scope.querySelectorAll('[data-preview-title]').forEach(function (row) {
+                row.addEventListener('pointerenter', function (event) {
+                    if (event.pointerType !== 'mouse') return;
+                    show(row, event);
+                });
+                row.addEventListener('pointermove', track);
+                row.addEventListener('pointerleave', hide);
+                // A keyboard user never sees the card, so it must not linger
+                // behind a focus jump either.
+                row.addEventListener('focus', hide);
             });
-            row.addEventListener('pointermove', track);
-            row.addEventListener('pointerleave', hide);
-            // A keyboard user never sees the card, so it must not linger
-            // behind a focus jump either.
-            row.addEventListener('focus', hide);
-        });
+        };
 
         window.addEventListener('scroll', hide, { passive: true });
+
+        preview = { bind: bindRows, hide: hide };
     }
 
     /* ---------------------------------------------------------------
        Mobile menu: close on outside click and on Escape
        --------------------------------------------------------------- */
     var menus = document.querySelectorAll('[data-mobile-menu]');
+
+    var closeMenus = function () {
+        menus.forEach(function (menu) { menu.open = false; });
+    };
 
     if (menus.length) {
         document.addEventListener('click', function (event) {
@@ -216,7 +240,39 @@
 
         document.addEventListener('keydown', function (event) {
             if (event.key !== 'Escape') return;
-            menus.forEach(function (menu) { menu.open = false; });
+            closeMenus();
         });
     }
+
+    /* ---------------------------------------------------------------
+       Set-up and tear-down of what lives inside <main>
+       --------------------------------------------------------------- */
+    var tearDown = function () {
+        if (revealObserver) {
+            revealObserver.disconnect();
+            revealObserver = null;
+        }
+
+        if (revealTimer) {
+            window.clearTimeout(revealTimer);
+            revealTimer = null;
+        }
+
+        // The row under the pointer is about to go, so the card goes with it.
+        if (preview) preview.hide();
+    };
+
+    var setUp = function (scope) {
+        tearDown();
+        revealOnScroll(scope);
+        if (preview) preview.bind(scope);
+    };
+
+    // This file is deferred, so the page is already parsed.
+    setUp(document);
+
+    document.addEventListener('instant:navigated', function (event) {
+        closeMenus();
+        setUp(event.detail.main);
+    });
 })();
